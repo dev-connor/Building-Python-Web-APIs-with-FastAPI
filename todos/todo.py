@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Path
-from model import Todo
+from model import Todo, TodoItem
 
 todo_router = APIRouter()
 
@@ -25,5 +25,34 @@ async def get_syngle_todo(todo_id:int = Path(..., title='The ID of the todo to r
             }
     return {
         'message': "Todo with supplied ID dosen't exist."
+    }
+@todo_router.put('/todo/{todo_id}')
+async def update_todo(todo_data: TodoItem, todo_id: int = Path(..., title='The ID of the todo to be updated.')) -> dict:
+    for todo in todo_list:
+        if todo.id == todo_id:
+            todo.item = todo_data.item
+            return {
+                'message': "Todo updated successfully.."
+            }
+    return {
+        'message': "Todo with supplied ID dosen't exist."
+    }
+@todo_router.delete('/todo/{todo_id}')
+async def delete_single_todo(todo_id: int) -> dict:
+    for index in range(len(todo_list)):
+        todo = todo_list[index]
+        if todo.id == todo_id:
+            todo_list.pop(index)
+            return {
+                'message': "Todo deleted successfully."
+            }
+    return {
+        'message': "Todo with supplied ID dosen't exist."
+    }
+@todo_router.delete('/todo')
+async def delete_all_todo() -> dict:
+    todo_list.clear()
+    return {
+        'message': 'Todos deleted successfully.'
     }
 
