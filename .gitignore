@@ -1,0 +1,6 @@
+# 환경변수
+.env
+# IDE
+.idea
+# 가상환경
+venv
