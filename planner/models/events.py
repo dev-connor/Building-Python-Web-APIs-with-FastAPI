@@ -1,3 +1,4 @@
+from pydantic import BaseModel
 from beanie import Document
 from typing import Optional, List
 
@@ -9,7 +10,7 @@ class Event(Document):
     location: str
 
     class Config:
-        json_schema_extra = {
+        schema_extra = {
             'example': {
                 'title': 'FastAPI Book Launch',
                 'image': 'https://linktomyimage.com/image.png',
@@ -20,7 +21,7 @@ class Event(Document):
         }
     class Settings:
         name = 'events'
-class EventUpdate(Document):
+class EventUpdate(BaseModel):
     title: Optional[str]
     image: Optional[str]
     description: Optional[str]
@@ -28,7 +29,7 @@ class EventUpdate(Document):
     location: Optional[str]
 
     class Config:
-        json_schema_extra = {
+        schema_extra = {
             'example': {
                 'title': 'FastAPI Book Launch',
                 'image': 'https://linktomyimage.com/image.png',

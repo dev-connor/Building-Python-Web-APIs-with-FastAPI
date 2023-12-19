@@ -22,7 +22,7 @@ class Database:
     async def save(self, document) -> None:
         await document.create()
         return
-    async def get(self, PydanticObjectId) -> Any:
+    async def get(self, id: PydanticObjectId) -> Any:
         doc = await self.model.get(id)
         if doc:
             return doc
