@@ -4,3 +4,7 @@
 .idea
 # 가상환경
 venv
+venv2
+
+# DB
+store
