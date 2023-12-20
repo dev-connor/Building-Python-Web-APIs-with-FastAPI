@@ -18,7 +18,7 @@ def create_access_token(user: str):
 
 def verify_access_token(token: str):
     try:
-        data = jwt.decode(token, settings.SECRET_KEY, algorithm=['HS256'])
+        data = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
 
         expire = data.get('expires')
 
