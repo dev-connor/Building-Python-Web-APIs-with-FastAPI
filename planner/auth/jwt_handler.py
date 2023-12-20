@@ -25,7 +25,7 @@ def verify_access_token(token: str):
         if expire is None:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail='No acess token supplied'
+                detail='No access token supplied'
             )
         if datetime.utcnow() > datetime.utcfromtimestamp(expire):
             raise HTTPException(
